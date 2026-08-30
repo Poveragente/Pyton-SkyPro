@@ -1,5 +1,5 @@
-import time
 from pages.project_page import ProjectPage
+
 
 def test_create_project(token, base_url):
     page = ProjectPage(base_url, token)
@@ -16,7 +16,8 @@ def test_create_project(token, base_url):
     # 2. Получаем полное описание
     project_full = page.get_project(project_id)
     assert "title" in project_full, "В полном ответе нет поля 'title'"
-    assert project_full["title"] == unique_title, f"Название не совпадает: ожидалось {unique_title}, получено {project_full['title']}"
+    assert project_full[
+               "title"] == unique_title, f"Название не совпадает: ожидалось {unique_title}, получено {project_full['title']}"
 
     print(f"✅ Название подтверждено: {project_full['title']}")
 

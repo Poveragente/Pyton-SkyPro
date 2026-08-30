@@ -1,18 +1,22 @@
 import pytest
 import requests
+
 from t08_lesson.pages.project_page import ProjectPage
+
 
 @pytest.fixture(scope="session")
 def base_url():
     return "https://ru.yougile.com"
 
+
 @pytest.fixture(scope="session")
 def auth_credentials():
     return {
-        "login": "YOUR_LOGIN", # --Вставьте сюда ваш логин от yougile
-        "password": "YOUR_PASSWORD", # -- Вставьте сюда ваш пароль от yougile
+        "login": "YOUR_LOGIN",  # --Вставьте сюда ваш логин от yougile
+        "password": "YOUR_PASSWORD",  # -- Вставьте сюда ваш пароль от yougile
         "name": "Аларм Тест",
     }
+
 
 @pytest.fixture(scope="session")
 def token(auth_credentials, base_url):
@@ -51,9 +55,11 @@ def token(auth_credentials, base_url):
     print("✅ Токен получен")
     return entry["key"]
 
+
 @pytest.fixture(scope="session")
 def page(base_url, token):
     return ProjectPage(base_url, token)
+
 
 @pytest.fixture(scope="session")
 def company_id(page):

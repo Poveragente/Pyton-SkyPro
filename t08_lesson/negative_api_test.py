@@ -1,10 +1,10 @@
-import time
 import uuid
+
 from pages.project_page import ProjectPage
 
-def test_get_nonexistent_project(token, base_url):
 
-  #  Негативный тест: для несуществующего ID
+def test_get_nonexistent_project(token, base_url):
+    #  Негативный тест: для несуществующего ID
 
     page = ProjectPage(base_url, token)
     # Генерируем заведомо несуществующий UUID
@@ -15,9 +15,9 @@ def test_get_nonexistent_project(token, base_url):
     assert resp.status_code in (404, 400), f"Ожидался 404 или 400, получен {resp.status_code}. Ответ: {resp.text}"
     print(f"✅ Правильно отклонён запрос к несуществующему проекту: status={resp.status_code}")
 
-def test_get_invalid_id_format(token, base_url):
 
-   # Негативный тест: некорректный ID (короткая строка)
+def test_get_invalid_id_format(token, base_url):
+    # Негативный тест: некорректный ID (короткая строка)
     page = ProjectPage(base_url, token)
     invalid_id = "abc"
 
@@ -25,6 +25,7 @@ def test_get_invalid_id_format(token, base_url):
 
     assert resp.status_code == 404, f"Ожидался 400 для невалидного ID, получен {resp.status_code}. Ответ: {resp.text}"
     print(f"✅ Правильно отклонён запрос с невалидным ID: status={resp.status_code}")
+
 
 def test_get_nonexistent_project_detailed(token, base_url):
     """
@@ -52,6 +53,7 @@ def test_get_nonexistent_project_detailed(token, base_url):
     assert has_message, f"В ответе нет понятного сообщения об ошибке. Получено: {error_body}"
 
     print(f"✅ Правильно отклонён запрос к несуществующему проекту: status={resp.status_code}, body={error_body}")
+
 
 def test_project_no_title(token, base_url):
     """
